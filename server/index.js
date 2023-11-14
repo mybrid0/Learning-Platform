@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(cors());
 
 //Routers
+const usersRouter = require("./routes/Users");
+app.use("/users", usersRouter);
 
 //Commence Server
 db.sequelize.sync().then(() => {
