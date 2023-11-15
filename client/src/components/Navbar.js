@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ authState }) {
+  console.log(authState);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <nav className="nav">
@@ -22,12 +23,20 @@ function Navbar() {
         <li>
           <NavLink to="/about">About Us</NavLink>
         </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/register">Register</NavLink>
-        </li>
+        {!authState.isLoggedIn ? (
+          <>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          </>
+        ) : (
+          <li>
+            <NavLink to="/profile">{authState.username}</NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

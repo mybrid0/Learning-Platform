@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 
@@ -8,18 +7,18 @@ const Login = () => {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [modal, setModal] = useState(false);
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { setAuthState } = useContext(AuthContext);
 
-  const openModal = (errorMesage) => {
-    setError(errorMesage);
-    setIsModalOpen(true);
+  const { setAuthState } = useContext(AuthContext);
+  const openModal = (errorMessage) => {
+    setError(errorMessage);
+    setModal(true);
   };
 
-  const closeModal = (errorMesage) => {
+  const closeModal = () => {
     setError("");
-    setIsModalOpen(false);
+    setModal(false);
   };
 
   const login = () => {
@@ -30,6 +29,7 @@ const Login = () => {
       })
       .then((response) => {
         if (response.data.error) {
+          console.log(response.data.error);
           openModal(response.data.error);
         } else {
           localStorage.setItem("accessToken", response.data.token);
@@ -52,25 +52,26 @@ const Login = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={login}>Login</button>
-        <Modal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          contentLabel="Error"
-          className="modal-content"
-          overlayClassName="modal-overlay"
-        >
-          <h2 className="modal-title">Error</h2>
-          <p>{error}</p>
-          <button className="modal-button" onClick={closeModal}>
-            Close
-          </button>
-        </Modal>
       </div>
+
+      {modal && (
+        <div className="modal">
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal-content">
+              <h2>Error</h2>
+              <p>{error}</p>
+              <button className="modal-button" onClick={closeModal}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

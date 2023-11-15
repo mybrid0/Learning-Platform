@@ -34,15 +34,15 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await Users.findOne({ where: { username: username } });
-  console.log(user);
-
-  if (!user) {
-    res.json({ error: "Invalid username or password" });
-  }
   try {
-    bcrypt.compare(password, user.password).then((result) => {
-      if (result) {
+    const user = await Users.findOne({ where: { username: username } });
+
+    if (!user) {
+      return res.json({ error: "Invalid username or password" });
+    } else {
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (isPasswordValid) {
         const accessToken = sign(
           { username: user.username, id: user.id },
           process.env.SECRET
@@ -51,11 +51,15 @@ router.post("/login", async (req, res) => {
       } else {
         res.json({ error: "Invalid password" });
       }
-    });
+    }
   } catch (error) {
-    console.log(error);
-    res.json({ error: error.message });
+    console.error("Error in login route:", error);
+    res.json({ error: "Internal server error" });
   }
+});
+
+router.get("/auth", validateToken, (req, res) => {
+  res.json(req.user);
 });
 
 module.exports = router;
