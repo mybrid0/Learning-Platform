@@ -31,4 +31,31 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await Users.findOne({ where: { username: username } });
+  console.log(user);
+
+  if (!user) {
+    res.json({ error: "Invalid username or password" });
+  }
+  try {
+    bcrypt.compare(password, user.password).then((result) => {
+      if (result) {
+        const accessToken = sign(
+          { username: user.username, id: user.id },
+          process.env.SECRET
+        );
+        res.json({ token: accessToken, username: user.username, id: user.id });
+      } else {
+        res.json({ error: "Invalid password" });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ error: error.message });
+  }
+});
+
 module.exports = router;
