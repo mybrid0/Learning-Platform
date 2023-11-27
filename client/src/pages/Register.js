@@ -4,6 +4,8 @@ import $ from "jquery";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import Welcome from "../components/Welcome";
+import background from "../img/background.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,46 +33,55 @@ const Register = () => {
   };
 
   return (
-    <div className="registerContainer">
-      <h1>Create an Account</h1>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validation}
-      >
-        <Form className="formContainer">
-          <ErrorMessage className="error" name="username" component="span" />
-          <Field
-            id="input"
-            name="username"
-            placeholder="Username"
-            autoComplete="off"
-          />
+    <div className="authWrapper">
+      <Welcome />
 
-          <ErrorMessage className="error" name="password" component="span" />
-          <Field
-            id="input"
-            name="password"
-            placeholder="Password"
-            autoComplete="off"
-            type="password"
-          />
+      <div className="registerContainer">
+        <h1>Register</h1>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validation}
+        >
+          <Form className="formContainer">
+            <label htmlFor="username">USERNAME</label>
+            <Field
+              id="input"
+              name="username"
+              placeholder="Enter a Username"
+              autoComplete="off"
+            />
 
-          <ErrorMessage
-            className="error"
-            name="confirmPassword"
-            component="span"
-          />
-          <Field
-            id="input"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            autoComplete="off"
-            type="password"
-          />
-          <button type="submit">Create Account</button>
-        </Form>
-      </Formik>
+            <label htmlFor="password">PASSWORD</label>
+
+            <Field
+              id="input"
+              name="password"
+              placeholder="Enter a password"
+              autoComplete="off"
+              type="password"
+            />
+
+            <label htmlFor="confirmPassword">CONFIRM PASSWORD</label>
+
+            <Field
+              id="input"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              autoComplete="off"
+              type="password"
+            />
+            <ErrorMessage className="error" name="username" component="span" />
+            <ErrorMessage className="error" name="password" component="span" />
+            <ErrorMessage
+              className="error"
+              name="confirmPassword"
+              component="span"
+            />
+            <button type="submit">Create Account</button>
+          </Form>
+        </Formik>
+      </div>
     </div>
   );
 };

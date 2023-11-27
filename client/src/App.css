@@ -62,7 +62,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-700);
+
+  background: radial-gradient(
+    circle at 27% 47%,
+    var(--primary-900) 16%,
+    var(--primary-800) 91%
+  );
   position: sticky;
   top: 0;
   width: 100%;
@@ -191,7 +196,7 @@ body {
 .loginContainer {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -199,32 +204,35 @@ body {
 .loginContainer h1 {
   font-weight: 300;
   font-size: 3rem;
+  margin-top: 0;
+  text-align: left;
 }
 .formContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 70%;
 }
-
 .formContainer input {
   width: 100%;
   height: 3rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: none;
-  padding-left: 1rem;
+  border-bottom: rgb(60, 59, 59) 3px solid;
+
   font-family: inherit;
   font-weight: 300;
-  border-radius: 4px;
   margin-bottom: 2rem;
+  background-color: transparent;
   transition: border-radius 0.2s ease, border 0.1s ease;
 }
-
+.formContainer label {
+  text-align: left;
+  margin-bottom: 2px;
+}
 .formContainer input:focus {
   outline: none;
-  border-radius: 10px;
-  border: var(--neutral-500) solid 2px;
+  border: 3px solid rgb(48, 47, 47);
 }
 
 .formContainer button {
@@ -261,8 +269,6 @@ body {
   margin-left: 10px; /* Adjust the spacing as needed */
 }
 
-/* ModalStyles.css */
-
 .modal,
 .modal-overlay {
   width: 100vw;
@@ -296,7 +302,85 @@ body {
 }
 
 .modal-button {
-  background-color: #e038b9;
+  background: radial-gradient(
+    circle at 25% 90%,
+    var(--primary-900) 16%,
+    var(--primary-800) 51%
+  );
   color: #fff;
   border: none;
+  width: 100px;
+  height: 25px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.authWrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+.welcomeContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  /* global 94%+ browsers support */
+  background: radial-gradient(
+    circle at 25% 90%,
+    var(--primary-900) 16%,
+    var(--primary-800) 51%
+  );
+}
+.welcomeContainer .bg-img {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+}
+.welcomeContainer .bg-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  height: auto;
+  opacity: 80%;
+}
+.welcomeText {
+  display: flex;
+  flex-direction: column;
+  max-height: 50%;
+  color: white;
+}
+
+.welcomeText h1 {
+  color: rgb(255, 255, 255);
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0px 5px 30px #181816;
+}
+
+.welcomeText p {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 2rem;
+  font-weight: 300;
+}
+
+@media (max-width: 800px) {
+  .registerContainer h1,
+  .loginContainer h1 {
+    font-size: 2rem;
+  }
+  .registerContainer,
+  .loginContainer {
+    font-size: 0.9rem;
+    padding: 0 5px;
+  }
+  .formContainer input {
+    font-size: 1.2rem;
+    width: 90%;
+  }
+  .welcomeContainer .welcomeText h1 {
+    font-size: 1.2rem;
+  }
 }

@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Welcome from "../components/Welcome";
 import { AuthContext } from "../helpers/AuthContext";
+import background from "../img/background.png";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -43,35 +45,41 @@ const Login = () => {
       });
   };
   return (
-    <div className="loginContainer">
-      <h1>Login</h1>
-      <div className="formContainer">
-        <input
-          type="text"
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={login}>Login</button>
-      </div>
+    <div className="authWrapper">
+      <Welcome />
+      <div className="loginContainer">
+        <h1>Login</h1>
+        <div className="formContainer">
+          <label htmlFor="username">USERNAME</label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="username">PASSWORD</label>
 
-      {modal && (
-        <div className="modal">
-          <div className="modal-overlay" onClick={closeModal}>
-            <div className="modal-content">
-              <h2>Error</h2>
-              <p>{error}</p>
-              <button className="modal-button" onClick={closeModal}>
-                Close
-              </button>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={login}>Login</button>
+        </div>
+
+        {modal && (
+          <div className="modal">
+            <div className="modal-overlay" onClick={closeModal}>
+              <div className="modal-content">
+                <h2>Error</h2>
+                <p>{error}</p>
+                <button className="modal-button" onClick={closeModal}>
+                  Close
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
