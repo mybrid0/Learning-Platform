@@ -1,2 +1,0 @@
-client ID : 119172379902-odoa02s5tteofvjo7tn23hf646bkrf0i.apps.googleusercontent.com
-Secret : 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
