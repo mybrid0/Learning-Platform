@@ -16,7 +16,9 @@ const Register = () => {
 
   const validation = Yup.object().shape({
     username: Yup.string().min(3).max(15).required(),
-    password: Yup.string().min(6).max(20).required(),
+    password: Yup.string()
+      .min(8, "Password is too short, 8 characters minimum")
+      .required("No Password Given"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Please confirm Password"),

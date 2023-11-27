@@ -40,6 +40,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.json({ error: "Invalid username or password" });
     } else {
+      // Checks if password from body matches hashed password from database
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (isPasswordValid) {
