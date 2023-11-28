@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { FaCaretDown } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../helpers/AuthContext";
 
-function Navbar({ authState }) {
+function Navbar({ authState, setAuthState }) {
   console.log(authState);
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
+
   return (
     <nav className="nav">
       <Link to="/" className="title">
@@ -28,14 +30,7 @@ function Navbar({ authState }) {
           <NavLink to="/about">About Us</NavLink>
         </li>
         {!authState.isLoggedIn ? (
-          <>
-            <li className="link">
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li className="link">
-              <NavLink to="/register">Register</NavLink>
-            </li>
-          </>
+          <></>
         ) : (
           <li className="drop-link">
             <a
@@ -46,7 +41,7 @@ function Navbar({ authState }) {
               {authState.username}
               <FaCaretDown />
             </a>
-            {open && <DropdownMenu />}
+            {open && <DropdownMenu setAuthState={setAuthState} />}
           </li>
         )}
       </ul>
@@ -54,21 +49,38 @@ function Navbar({ authState }) {
   );
 }
 
-function DropdownMenu() {
-  function DropdownItem(props) {
+function DropdownMenu({ setAuthState }) {
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    setAuthState({ username: "", id: 0, isLoggedIn: false });
+    window.location.replace("/");
+  };
+  function DropdownItem({ link, onClick, icon, children }) {
+    const handleClick = (e) => {
+      e.preventDefault();
+      if (onClick) {
+        onClick();
+      }
+    };
     return (
-      <a href={props.link} className="menu-item">
-        {props.children}
-        <span className="icon">{props.icon}</span>
+      <a href={link} className="menu-item" onClick={handleClick}>
+        {children}
+        <span className="icon">{icon}</span>
       </a>
     );
   }
+  let navigate = useNavigate();
+
   return (
     <div className="dropdown">
-      <DropdownItem link="/profile" icon={<CgProfile />}>
+      <DropdownItem
+        link="/profile"
+        onClick={navigate("/profile")}
+        icon={<CgProfile />}
+      >
         Profile
       </DropdownItem>
-      <DropdownItem link="/logout" icon={<CiLogout />}>
+      <DropdownItem link="/logout" onClick={logout} icon={<CiLogout />}>
         Logout
       </DropdownItem>
     </div>
