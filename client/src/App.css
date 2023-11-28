@@ -291,7 +291,7 @@ body {
 }
 .nav-auth {
   position: sticky;
-  align-self: flex-end;
+  align-self: flex-start;
   justify-self: flex-end;
   width: 100%;
 }
@@ -323,13 +323,10 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center;
-  position: relative;
-  margin-top: 20px;
+  justify-content: space-evenly;
   padding: 20px;
 }
-.registerContent {
-}
+
 .registerContainer h1,
 .loginContainer h1 {
   font-weight: 300;
@@ -342,6 +339,8 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 90%;
+  max-height: 400px;
+  height: 400px;
 }
 .formContainer input {
   width: 100%;
@@ -404,6 +403,7 @@ body {
   width: 100%;
   justify-content: start;
   gap: 5%;
+  align-self: flex-start;
 }
 .auth-nav a {
   text-decoration: none;
