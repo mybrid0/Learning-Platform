@@ -55,6 +55,7 @@ function DropdownMenu({ setAuthState }) {
     setAuthState({ username: "", id: 0, isLoggedIn: false });
     window.location.replace("/");
   };
+
   function DropdownItem({ link, onClick, icon, children }) {
     const handleClick = (e) => {
       e.preventDefault();
@@ -75,7 +76,7 @@ function DropdownMenu({ setAuthState }) {
     <div className="dropdown">
       <DropdownItem
         link="/profile"
-        onClick={navigate("/profile")}
+        onClick={() => navigate("/profile")}
         icon={<CgProfile />}
       >
         Profile

@@ -1,0 +1,36 @@
+.quizzes {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.quiz-cards1 {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-decoration: none;
+}
+
+.quiz-cards1 a {
+  text-decoration: none;
+}
+
+.quiz-card1 {
+  background-color: var(--primary-700);
+  margin-bottom: 20px;
+  color: white;
+  text-decoration: none;
+
+  border-radius: 10px;
+  padding: 10px;
+  width: 400px;
+  height: 200px;
+}
+
+@media (max-width: 1200px) {
+  .quiz-card1 {
+    width: 100%;
+  }
+}

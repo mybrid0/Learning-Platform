@@ -1,50 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-:root {
-  --primary-100: #f2f9ff;
-  --primary-200: #b9e2ff;
-  --primary-300: #7ed0fc;
-  --primary-400: #43c1f5;
-  --primary-500: #0cb5e8;
-  --primary-600: #0498b8;
-  --primary-700: #017787;
-  --primary-800: #005257;
-  --primary-900: #002626;
 
-  /* Accent: Loudicious Pink */
-  --accent-100: #fff2f9;
-  --accent-200: #ffc5e7;
-  --accent-300: #fb97d8;
-  --accent-400: #f267c9;
-  --accent-500: #e038b9;
-  --accent-600: #b21897;
-  --accent-700: #830a75;
-  --accent-800: #550550;
-  --accent-900: #260226;
-
-  /* Neutral */
-  --neutral-100: #fafbfc;
-  --neutral-200: #e8ebed;
-  --neutral-300: #d6dcde;
-  --neutral-400: #c5cccf;
-  --neutral-500: #b4bdbf;
-  --neutral-600: #8e9899;
-  --neutral-700: #6a7273;
-  --neutral-800: #464c4d;
-  --neutral-900: #222626;
-
-  --misc: #0177874a;
-}
 /* Primary: Blue Raspberry */
 
 .App {
-  background-color: white;
   height: 100vh;
-  width: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--primary-100);
+  background: linear-gradient(
+    134deg,
+    rgb(4, 103, 126) 0%,
+    rgba(0, 82, 87, 1) 63%
+  );
 }
 
 .login-nav.active,
@@ -53,10 +21,10 @@
 }
 
 body {
-  box-sizing: border-box;
-  max-height: 100vh;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 .nav {
@@ -325,6 +293,7 @@ body {
   width: 100%;
   justify-content: space-evenly;
   padding: 20px;
+  background-color: white;
 }
 
 .registerContainer h1,

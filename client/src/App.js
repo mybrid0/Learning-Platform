@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 
 import axios from "axios";
 import "./App.css";
@@ -9,6 +9,8 @@ import { AuthContext } from "./helpers/AuthContext";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Quiz from "./pages/Quiz";
+import Quizzes from "./pages/Quizzes";
 import Register from "./pages/Register";
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/quizzes/:quizTitle" element={<Quiz />} />
+            <Route path="/quizzes/" element={<Quizzes />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>

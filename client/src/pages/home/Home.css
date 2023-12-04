@@ -1,0 +1,120 @@
+.home {
+  margin: 0;
+  background: linear-gradient(
+    134deg,
+    rgb(4, 103, 126) 0%,
+    rgba(0, 82, 87, 1) 63%
+  );
+  height: 100vh;
+  width: 100dvw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home .wrapper {
+  width: 97%;
+  background: linear-gradient(to right, var(--primary-800), var(--primary-900));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.wrapper > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > * h1 {
+  margin-left: 10px;
+  cursor: pointer;
+  margin-bottom: 1px;
+  width: 70%;
+  transition: text-shadow 0.2s ease, transform 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.wrapper > * h1:hover {
+  text-shadow: 0 0 25px rgb(38, 34, 34);
+  transform: scale(1.1) translate(17px);
+}
+
+.wrapper > * h1 a {
+  text-decoration: none;
+  color: white;
+}
+
+.quiz-card {
+  text-decoration: none;
+  color: white;
+  background-color: #107791;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.quiz-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.quiz-card h2 {
+  color: white;
+  font-size: rem;
+  margin-left: 2rem;
+}
+
+@media (max-width: 2000px) {
+  .wrapper > * {
+    height: 650px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    color: antiquewhite;
+    width: 400px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+  }
+  .wrapper > * h1 {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 1260px) {
+  .wrapper > * {
+    height: 350px;
+  }
+  .wrapper > * h1 {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .quiz-card {
+    height: 40px;
+  }
+
+  .quiz-card h2 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .wrapper > * {
+    width: 350px;
+  }
+
+  .wrapper {
+    margin-top: 350px;
+  }
+  .wrapper > * h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}

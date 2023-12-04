@@ -2,3 +2,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+:root {
+  --primary-100: #f2f9ff;
+  --primary-200: #b9e2ff;
+  --primary-300: #7ed0fc;
+  --primary-400: #43c1f5;
+  --primary-500: #0cb5e8;
+  --primary-600: #0498b8;
+  --primary-700: #017787;
+  --primary-800: #005257;
+  --primary-900: #002626;
+
+  /* Accent: Loudicious Pink */
+  --accent-100: #fff2f9;
+  --accent-200: #ffc5e7;
+  --accent-300: #fb97d8;
+  --accent-400: #f267c9;
+  --accent-500: #e038b9;
+  --accent-600: #b21897;
+  --accent-700: #830a75;
+  --accent-800: #550550;
+  --accent-900: #260226;
+
+  /* Neutral */
+  --neutral-100: #fafbfc;
+  --neutral-200: #e8ebed;
+  --neutral-300: #d6dcde;
+  --neutral-400: #c5cccf;
+  --neutral-500: #b4bdbf;
+  --neutral-600: #8e9899;
+  --neutral-700: #6a7273;
+  --neutral-800: #464c4d;
+  --neutral-900: #222626;
+
+  --misc: #0177874a;
+}
