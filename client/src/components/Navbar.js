@@ -29,6 +29,7 @@ function Navbar({ authState, setAuthState }) {
         <li className="link">
           <NavLink to="/about">About Us</NavLink>
         </li>
+        {/* Check if logged in */}
         {!authState.isLoggedIn ? (
           <></>
         ) : (

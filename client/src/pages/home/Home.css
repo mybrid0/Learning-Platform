@@ -35,6 +35,7 @@
   width: 70%;
   transition: text-shadow 0.2s ease, transform 0.2s ease;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .wrapper > * h1:hover {
@@ -66,8 +67,9 @@
 
 .quiz-card h2 {
   color: white;
-  font-size: rem;
+  font-size: 1.4rem;
   margin-left: 2rem;
+  font-weight: 400;
 }
 
 @media (max-width: 2000px) {

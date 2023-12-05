@@ -20,17 +20,22 @@ function App() {
     isLoggedIn: false,
   });
 
+  //When page Loads...
   useEffect(() => {
+    // Call auth endpoint in backend using the access Token
     axios
       .get("http://localhost:3001/users/auth", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
       })
+      //after completing request receives response
       .then((response) => {
         if (response.data.error)
+          // If there is an error, isLogged in will still be false.
           setAuthState({ ...authState, isLoggedIn: false });
         else {
+          //If it is a success, The authstate has the username, id, and isLoggedIn
           setAuthState({
             username: response.data.username,
             id: response.data.id,
@@ -43,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
+        {/* Context wraps the application */}
         <BrowserRouter>
           <Navbar authState={authState} setAuthState={setAuthState} />
           <Routes>
