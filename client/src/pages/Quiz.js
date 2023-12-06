@@ -1,18 +1,20 @@
-// components/Quiz/Quiz.js
-
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import quizData from "../QuizData"; // Importing the quiz data (assuming it's a separate file)
+import quizData from "../QuizData"; // Importing the quiz data
+import { AuthContext } from "../helpers/AuthContext";
 import "./Quiz.css"; // Importing styles for the Quiz component
 
 const Quiz = () => {
   // Extracting the quizTitle parameter from the URL using React Router's useParams
   const { quizTitle } = useParams();
+  const { authState } = useContext(AuthContext);
 
   // State variables to manage the quiz state
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
 
   // Access the navigate function from React Router to handle navigation
   const navigate = useNavigate();
@@ -36,21 +38,40 @@ const Quiz = () => {
   };
 
   // Function to handle moving to the next question or finishing the quiz
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
+    console.log(currentQuestion);
+    console.log(currentQuiz.questions.length);
     if (currentQuestion < currentQuiz.questions.length - 1) {
       // Move to the next question
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setSelectedAnswer(null); // Reset selected answer for the new question
     } else {
-      // Quiz finished, navigate to the end screen
-      console.log("Quiz finished!");
-      navigate("/"); // Redirect to the home page
+      try {
+        // Quiz finished, navigate to the end screen
+        console.log("Quiz finished!");
+        const quizCompletionResponse = await axios.post(
+          "http://localhost:3001/quiz/quiz-completion",
+          {
+            userId: authState.id,
+            score: score,
+            subject: currentQuiz.title,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+        console.log(quizCompletionResponse.data);
+        setIsQuizFinished(true);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   // Check if the quiz is finished based on the current question index
-  const isQuizFinished = currentQuestion === currentQuiz.questions.length;
-
+  console.log(currentQuestion, currentQuiz.questions.length);
   return (
     <div className="quiz">
       <div className="quiz-header">
@@ -60,6 +81,7 @@ const Quiz = () => {
           <span>{currentQuiz.questions.length}</span>
         </div>
       </div>
+
       {currentQuiz.questions.length > 0 ? (
         !isQuizFinished ? (
           <div className="question-container">
@@ -94,16 +116,20 @@ const Quiz = () => {
             </button>
           </div>
         ) : (
-          <div className="quiz-finished">
-            {/* Display quiz completion message and final score */}
-            <h2>
-              Congratulations! You've completed the {currentQuiz.title} Quiz.
-            </h2>
-            <p>
-              Final Score: {score}/{currentQuiz.questions.length}
-            </p>
-            <button onClick={() => navigate("/quizzes")}>Back</button>
-          </div>
+          <>
+            <div className="quiz-finished">
+              {/* Display quiz completion message and final score */}
+              <h2>
+                Congratulations! You've completed the {currentQuiz.title} Quiz.
+              </h2>
+              <p>
+                Final Score: {score}/{currentQuiz.questions.length}
+              </p>
+            </div>
+            <button className="back-btn" onClick={() => navigate("/quizzes")}>
+              Back
+            </button>
+          </>
         )
       ) : (
         // Display a message if no questions are found for the quiz

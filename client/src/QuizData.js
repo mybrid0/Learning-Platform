@@ -170,6 +170,97 @@ const quizData = [
       },
     ],
   },
+  {
+    title: "Computer Science",
+    questions: [
+      {
+        text: "What does HTML stand for?",
+        options: [
+          "Hyper Text Markup Language",
+          "Highly Typed Modern Language",
+          "Hyperlink and Text Markup Language",
+          "Home Tool Markup Language",
+        ],
+        correctAnswer: "Hyper Text Markup Language",
+      },
+      {
+        text: "Which programming language is known for its use in artificial intelligence?",
+        options: ["JavaScript", "Python", "C++", "Java"],
+        correctAnswer: "Python",
+      },
+      {
+        text: "What is the function of CSS in web development?",
+        options: [
+          "Client-Side Storage",
+          "Cascading Style Sheets",
+          "Computer Style Sheets",
+          "Content Style Sheets",
+        ],
+        correctAnswer: "Cascading Style Sheets",
+      },
+    ],
+  },
+  {
+    title: "Computer Science",
+    questions: [
+      {
+        text: "What does HTML stand for?",
+        options: [
+          "Hyper Text Markup Language",
+          "Highly Typed Modern Language",
+          "Hyperlink and Text Markup Language",
+          "Home Tool Markup Language",
+        ],
+        correctAnswer: "Hyper Text Markup Language",
+      },
+      {
+        text: "Which programming language is known for its use in artificial intelligence?",
+        options: ["JavaScript", "Python", "C++", "Java"],
+        correctAnswer: "Python",
+      },
+      {
+        text: "What is the function of CSS in web development?",
+        options: [
+          "Client-Side Storage",
+          "Cascading Style Sheets",
+          "Computer Style Sheets",
+          "Content Style Sheets",
+        ],
+        correctAnswer: "Cascading Style Sheets",
+      },
+    ],
+  },
+  {
+    title: "Computer Science",
+    questions: [
+      {
+        text: "What does HTML stand for?",
+        options: [
+          "Hyper Text Markup Language",
+          "Highly Typed Modern Language",
+          "Hyperlink and Text Markup Language",
+          "Home Tool Markup Language",
+        ],
+        correctAnswer: "Hyper Text Markup Language",
+      },
+      {
+        text: "Which programming language is known for its use in artificial intelligence?",
+        options: ["JavaScript", "Python", "C++", "Java"],
+        correctAnswer: "Python",
+      },
+      {
+        text: "What is the function of CSS in web development?",
+        options: [
+          "Client-Side Storage",
+          "Cascading Style Sheets",
+          "Computer Style Sheets",
+          "Content Style Sheets",
+        ],
+        correctAnswer: "Cascading Style Sheets",
+      },
+    ],
+  },
+
   // Add more quizzes as needed
 ];
 

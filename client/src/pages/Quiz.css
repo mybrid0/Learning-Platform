@@ -66,6 +66,12 @@ button {
 
 .quiz-finished {
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: #11788f;
+  padding: 2rem;
+  border-radius: 20px;
 }
 
 .quiz-header {
@@ -89,4 +95,20 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.back-btn {
+  background-color: #2193b0;
+  font-size: 1.4rem;
+  width: 10%;
+  margin-top: 2rem;
+  border: 2px solid white;
+  transition: background-color 0.2s ease, border-radius 0.2s ease,
+    border 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: #1f849d;
+  border-radius: 15px;
+  border: #0f5b6e 2px solid;
 }

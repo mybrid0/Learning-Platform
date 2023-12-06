@@ -14,6 +14,9 @@ app.use(cors());
 const usersRouter = require("./routes/Users");
 app.use("/users", usersRouter);
 
+const quizCompletionRouter = require("./routes/Quizzes");
+app.use("/quiz", quizCompletionRouter);
+
 //Commence Server
 db.sequelize.sync().then(() => {
   app.listen(process.env.PORT || 3001, () => {
