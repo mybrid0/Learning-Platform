@@ -3,6 +3,12 @@ code {
     monospace;
 }
 :root {
+  min-height: 100vh;
+  background: linear-gradient(
+    134deg,
+    rgb(4, 103, 126) 0%,
+    rgba(0, 82, 87, 1) 63%
+  );
   --primary-100: #f2f9ff;
   --primary-200: #b9e2ff;
   --primary-300: #7ed0fc;

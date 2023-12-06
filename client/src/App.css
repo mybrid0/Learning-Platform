@@ -3,16 +3,10 @@
 /* Primary: Blue Raspberry */
 
 .App {
-  height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(
-    134deg,
-    rgb(4, 103, 126) 0%,
-    rgba(0, 82, 87, 1) 63%
-  );
 }
 
 .login-nav.active,
@@ -35,11 +29,12 @@ body {
   background: radial-gradient(
     circle at 27% 47%,
     var(--primary-900) 16%,
-    var(--primary-800) 91%
+    #01484c 91%
   );
   position: sticky;
   top: 0;
   width: 100%;
+  z-index: 100000;
 }
 
 .nav .title {
@@ -73,7 +68,7 @@ body {
 }
 
 .link a:not(.active):hover {
-  background-color: var(--primary-600);
+  background-color: var(--primary-700);
   color: #ffffff;
 }
 
