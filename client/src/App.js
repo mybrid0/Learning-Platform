@@ -18,6 +18,7 @@ function App() {
     username: "",
     id: 0,
     isLoggedIn: false,
+    xp: 0,
   });
 
   //When page Loads...
@@ -31,6 +32,7 @@ function App() {
       })
       //after completing request receives response
       .then((response) => {
+        console.log(response);
         if (response.data.error)
           // If there is an error, isLogged in will still be false.
           setAuthState({ ...authState, isLoggedIn: false });
@@ -40,6 +42,7 @@ function App() {
             username: response.data.username,
             id: response.data.id,
             isLoggedIn: true,
+            xp: response.data.xp,
           });
         }
       });

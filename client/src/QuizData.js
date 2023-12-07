@@ -46,7 +46,7 @@ const quizData = [
       {
         text: "What is the name for a triangle with all sides of a different length?",
         options: ["Scalene", "Isoceles", "Equilateral", "Pyramid"],
-        correctAnswer: "Isoceles",
+        correctAnswer: "Scalene",
       },
       {
         text: "How Many Sides Does An Enneadecagon Have?",

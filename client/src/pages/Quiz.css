@@ -112,3 +112,38 @@ button {
   border-radius: 15px;
   border: #0f5b6e 2px solid;
 }
+.circle-progress {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 20px auto;
+  border: white 2px solid; /* Adjust the margin as needed */
+}
+
+.circle-progress div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#4caf50 0% 0%, transparent 0% 100%);
+  background-size: 200% 200%;
+  animation: rotate 1s linear infinite;
+}
+
+.xp-gained {
+  font-weight: 500;
+  display: flex;
+  color: #5aca5e;
+  font-size: 2rem;
+}
+.stat-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+@keyframes rotate {
+  to {
+    background-position: -200% -200%;
+  }
+}

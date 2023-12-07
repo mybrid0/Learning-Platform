@@ -62,8 +62,65 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.put("/update-xp/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { score } = req.body;
+
+    const user = await Users.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "user not found" });
+    }
+
+    const xpEarned = score * 50;
+
+    // Calculate new XP and XP level
+    const newXP = user.xp + xpEarned;
+    const newLevel = calculateXPLevel(newXP);
+
+    await user.update({ xp: newXP, xpLevel: newLevel });
+    res.json({ success: true, message: "XP UPDATED" });
+  } catch (error) {
+    console.log("Error Updating XP:", error);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
+
+const calculateXPLevel = (xp) => {
+  // Define XP thresholds for each level
+  const levelThresholds = [0, 500, 1000, 2000];
+
+  // Find the highest threshold that the user's XP exceeds
+  let level = 0;
+  while (levelThresholds[level + 1] && xp >= levelThresholds[level + 1]) {
+    level++;
+  }
+
+  return level;
+};
+
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
+});
+
+router.get("/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await Users.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({
+      xp: user.xp,
+      xpLevel: user.xpLevel,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "internal server error" });
+  }
 });
 
 module.exports = router;

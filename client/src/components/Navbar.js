@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { FaCaretDown } from "react-icons/fa";
@@ -9,6 +10,26 @@ function Navbar({ authState, setAuthState }) {
   console.log(authState);
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [userData, setUserData] = useState({ xp: 0, xpLevel: 0 });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3001/user/${authState.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+        setUserData(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <nav className="nav">
@@ -33,17 +54,19 @@ function Navbar({ authState, setAuthState }) {
         {!authState.isLoggedIn ? (
           <></>
         ) : (
-          <li className="drop-link">
-            <a
-              href="#"
-              className="dropdown-click"
-              onClick={() => setOpen(!open)}
-            >
-              {authState.username}
-              <FaCaretDown />
-            </a>
-            {open && <DropdownMenu setAuthState={setAuthState} />}
-          </li>
+          <>
+            <li className="drop-link">
+              <a
+                href="#"
+                className="dropdown-click"
+                onClick={() => setOpen(!open)}
+              >
+                {authState.username}
+                <FaCaretDown />
+              </a>
+              {open && <DropdownMenu setAuthState={setAuthState} />}
+            </li>
+          </>
         )}
       </ul>
     </nav>

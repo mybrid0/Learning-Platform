@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { animated, useSpring } from "react-spring";
 import quizData from "../QuizData"; // Importing the quiz data
 import { AuthContext } from "../helpers/AuthContext";
 import "./Quiz.css"; // Importing styles for the Quiz component
@@ -15,7 +16,8 @@ const Quiz = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
-
+  const [xpAnimated, setXpAnimated] = useState(0);
+  const [circleAnimated, setCircleAnimated] = useState(0);
   // Access the navigate function from React Router to handle navigation
   const navigate = useNavigate();
 
@@ -69,6 +71,51 @@ const Quiz = () => {
       }
     }
   };
+
+  const handleQuizCompletion = async () => {
+    try {
+      // Calculate XP gained from the quiz (assuming 50 XP per score)
+
+      // Update the user's XP and XP level
+      await axios.put(
+        `http://localhost:3001/users/update-xp/${authState.id}`,
+        {
+          score: score,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      // Redirect to the home page after completing the quiz
+      navigate("/quizzes");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const xpSpring = useSpring({
+    number: xpAnimated,
+    from: { number: 0 },
+    onRest: () => {
+      // Animation completed, redirect to home
+    },
+  });
+
+  const circleSpring = useSpring({
+    percentage: circleAnimated,
+    from: { percentage: 0 },
+    onRest: () => {},
+  });
+
+  useEffect(() => {
+    if (isQuizFinished) {
+      setXpAnimated(score * 50);
+      setCircleAnimated((score / currentQuiz.questions.length) * 100);
+    }
+  }, [score, currentQuiz, isQuizFinished]);
 
   // Check if the quiz is finished based on the current question index
   console.log(currentQuestion, currentQuiz.questions.length);
@@ -125,8 +172,30 @@ const Quiz = () => {
               <p>
                 Final Score: {score}/{currentQuiz.questions.length}
               </p>
+              {isQuizFinished && (
+                <>
+                  <div className="stat-container">
+                    <div className="xp-gained">
+                      <animated.p>
+                        {xpSpring.number.to((val) => Math.floor(val))}
+                      </animated.p>
+                      <p>XP GAINED</p>
+                    </div>
+                    <div className="circle-progress">
+                      <animated.div
+                        style={{
+                          background: circleSpring.percentage.to(
+                            (val) =>
+                              `conic-gradient(#4caf50 0% ${val}%, transparent ${val}% 100%)`
+                          ),
+                        }}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-            <button className="back-btn" onClick={() => navigate("/quizzes")}>
+            <button className="back-btn" onClick={handleQuizCompletion}>
               Back
             </button>
           </>
