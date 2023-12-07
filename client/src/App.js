@@ -21,6 +21,13 @@ function App() {
     xp: 0,
   });
 
+  const updateXP = (newXP) => {
+    setAuthState((prevAuthState) => ({
+      ...prevAuthState,
+      xp: newXP,
+    }));
+  };
+
   //When page Loads...
   useEffect(() => {
     // Call auth endpoint in backend using the access Token
@@ -42,7 +49,8 @@ function App() {
             username: response.data.username,
             id: response.data.id,
             isLoggedIn: true,
-            xp: response.data.xp,
+            xp: parseInt(localStorage.getItem("xp")) || 0,
+            xpLevel: parseInt(localStorage.getItem("xpLevel")) || 0,
           });
         }
       });
@@ -50,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ authState, setAuthState }}>
+      <AuthContext.Provider value={{ authState, setAuthState, updateXP }}>
         {/* Context wraps the application */}
         <BrowserRouter>
           <Navbar authState={authState} setAuthState={setAuthState} />

@@ -89,7 +89,9 @@ router.put("/update-xp/:userId", async (req, res) => {
 
 const calculateXPLevel = (xp) => {
   // Define XP thresholds for each level
-  const levelThresholds = [0, 500, 1000, 2000];
+  const levelThresholds = [
+    0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
+  ];
 
   // Find the highest threshold that the user's XP exceeds
   let level = 0;

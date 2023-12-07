@@ -9,7 +9,7 @@ import "./Quiz.css"; // Importing styles for the Quiz component
 const Quiz = () => {
   // Extracting the quizTitle parameter from the URL using React Router's useParams
   const { quizTitle } = useParams();
-  const { authState } = useContext(AuthContext);
+  const { authState, setAuthState } = useContext(AuthContext);
 
   // State variables to manage the quiz state
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -75,7 +75,10 @@ const Quiz = () => {
   const handleQuizCompletion = async () => {
     try {
       // Calculate XP gained from the quiz (assuming 50 XP per score)
-
+      setAuthState({
+        ...authState,
+        xp: authState.xp + score * 50,
+      });
       // Update the user's XP and XP level
       await axios.put(
         `http://localhost:3001/users/update-xp/${authState.id}`,
@@ -88,6 +91,8 @@ const Quiz = () => {
           },
         }
       );
+
+      localStorage.setItem("xp", authState.xp + score * 50);
 
       // Redirect to the home page after completing the quiz
       navigate("/quizzes");
