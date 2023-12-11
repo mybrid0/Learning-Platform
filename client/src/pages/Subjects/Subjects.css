@@ -1,0 +1,99 @@
+.subject-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.subject-card {
+  width: 400px;
+  margin: 10px;
+  padding: 15px;
+  background-color: #4699e4;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  z-index: 0;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.subject-card:hover {
+  transform: scale(1.05);
+}
+
+.subject-card:hover .subject-icon {
+  transform: scale(1.05);
+}
+
+.card-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.card-header h2 {
+  font-size: 2rem;
+  color: #feffff;
+  text-shadow: 0 0px 13px rgba(0, 0, 0, 0.466);
+}
+
+.subject-icon {
+  top: 30px;
+  right: 20px;
+  position: absolute;
+  font-size: 13em; /* Adjust the font size as needed */
+  opacity: 30%;
+  z-index: -1;
+  color: rgb(235, 235, 235);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-content {
+  padding: 0 10px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.subjects-page h1 {
+  width: 80%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 3rem;
+  margin: 0;
+  margin-top: 50px;
+  color: #f2f7ff;
+}
+.subjects-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorite-button {
+  color: white;
+  font-size: 1.9rem;
+  margin-left: 10px;
+  width: 0;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.favorite-button:hover:hover::after {
+  /* Show the text on hover */
+  opacity: 1;
+}
+
+.favorite-button.favorited {
+  color: pink;
+}
+
+.favorite-button:hover {
+  /* Adjust the transform property for the desired expansion effect */
+  transform: scale(1.2);
+}

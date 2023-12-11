@@ -1,24 +1,24 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { FaCaretDown } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
+import SearchBar from "./SearchBar";
 
 function Navbar({ authState, setAuthState }) {
   console.log(authState);
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [userData, setUserData] = useState({
-    xp: parseInt(localStorage.getItem("xp"), 10) || 0,
-    xpLevel: parseInt(localStorage.getItem("xpLevel"), 10) || 0,
-  });
 
   const xpForNextLevel = (authState.xpLevel + 1) * 1000;
   const xpProgress = (authState.xp / xpForNextLevel) * 100;
 
   console.log(xpProgress);
+
+  const handleSearch = (query) => {
+    // Handle the search query (e.g., make an API request, filter subjects, etc.)
+    console.log("Search Query:", query);
+  };
 
   return (
     <nav className="nav">
@@ -26,6 +26,9 @@ function Navbar({ authState, setAuthState }) {
         <Link to="/" className="title">
           Gib<span>John</span>Tutoring
         </Link>
+        <div>
+          <SearchBar onSearch={handleSearch} />
+        </div>
         <div
           className="menu"
           onClick={() => {
@@ -46,7 +49,7 @@ function Navbar({ authState, setAuthState }) {
           ) : (
             <>
               <div className="user-info">
-                <p>Level: {userData.xpLevel}</p>
+                <p>Level: {authState.xpLevel}</p>
               </div>
               <li className="drop-link">
                 <a
@@ -63,15 +66,19 @@ function Navbar({ authState, setAuthState }) {
           )}
         </ul>
       </div>
-      <div className="progress-bar-container-xp">
-        <div
-          className="progress-bar-xp"
-          style={{ width: `${xpProgress}%` }}
-        ></div>
-      </div>
-      <p className="current-level">Level {userData.xpLevel}</p>
-      <p className="xp-required">{authState.xp} XP </p>
-      <p className="next-level">Level {userData.xpLevel + 1}</p>
+      {authState.isLoggedIn && (
+        <>
+          <div className="progress-bar-container-xp">
+            <div
+              className="progress-bar-xp"
+              style={{ width: `${xpProgress}%` }}
+            ></div>
+          </div>
+          <p className="current-level">Level {authState.xpLevel}</p>
+          <p className="xp-required">{authState.xp} XP </p>
+          <p className="next-level">Level {authState.xpLevel + 1}</p>
+        </>
+      )}
     </nav>
   );
 }

@@ -19,5 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+  Users.associate = (models) => {
+    Users.hasMany(models.Favourite, {
+      onDelete: "CASCADE",
+    });
+  };
+
   return Users;
 };

@@ -5,10 +5,12 @@ import quizData from "../../QuizData";
 import { AuthContext } from "../../helpers/AuthContext";
 import QuizCard from "../home/QuizCard";
 import "./Home.css";
+import HomeSubjectCard from "./HomeSubjectCard";
 
 function Home() {
   let navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
+  const [favouritedSubjects, setFavouritedSubjects] = useState([]);
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
@@ -16,6 +18,25 @@ function Home() {
     }
     setQuizzes(quizData);
   }, [navigate]);
+
+  useEffect(() => {
+    const fetchFavouritedSubjects = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/favourites", {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        });
+
+        setFavouritedSubjects(response.data.foundFavourites);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFavouritedSubjects();
+  }, []);
+
+  console.log(favouritedSubjects);
 
   return (
     <div className="home">
@@ -35,7 +56,18 @@ function Home() {
           </div>
         </div>
         <div className="fav-subject-container">
-          <h1>Favourite Subjects</h1>
+          <h1>
+            <a href="/subjects">Favourite Subjects</a>
+          </h1>
+          <div className="subject-cards-home">
+            {favouritedSubjects.map((subject) => (
+              <HomeSubjectCard
+                key={subject.Subject.id}
+                subject={subject.Subject}
+                setFavouritedSubjects={setFavouritedSubjects}
+              />
+            ))}
+          </div>
         </div>
         <div className="profile-container">
           <h1> Profile</h1>

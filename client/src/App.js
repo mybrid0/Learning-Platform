@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Quiz from "./pages/Quiz";
 import Quizzes from "./pages/Quizzes";
 import Register from "./pages/Register";
+import Subjects from "./pages/Subjects/Subjects";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -70,6 +71,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/quizzes/:quizTitle" element={<Quiz />} />
             <Route path="/quizzes/" element={<Quizzes />} />
+            <Route path="/subjects/" element={<Subjects />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>

@@ -17,6 +17,12 @@ app.use("/users", usersRouter);
 const quizCompletionRouter = require("./routes/Quizzes");
 app.use("/quiz", quizCompletionRouter);
 
+const subjectRouter = require("./routes/Subjects");
+app.use("/subjects", subjectRouter);
+
+const favouriteRouter = require("./routes/Favourites");
+app.use("/favourites", favouriteRouter);
+
 //Commence Server
 db.sequelize.sync().then(() => {
   app.listen(process.env.PORT || 3001, () => {
