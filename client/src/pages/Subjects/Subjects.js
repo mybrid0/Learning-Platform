@@ -21,6 +21,7 @@ import {
   FaPeopleArrows,
   FaRocket,
 } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Subjects = () => {
   const [subjects, setSubjects] = useState([]);
@@ -43,19 +44,29 @@ const Subjects = () => {
     French: GiFrance,
     Astronomy: FaRocket,
   };
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get("query");
 
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
         const response = await axios.get("http://localhost:3001/subjects");
-        setSubjects(response.data);
+        const allSubjects = response.data;
+
+        // Filter subjects based on the search query
+        const filteredSubjects = allSubjects.filter((subject) =>
+          subject.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // Set the filtered subjects in the state
+        setSubjects(filteredSubjects);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchSubjects();
-  }, []);
+  }, [searchQuery]);
 
   return (
     <div className="subjects-page">

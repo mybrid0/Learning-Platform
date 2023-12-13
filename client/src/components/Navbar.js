@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
@@ -6,19 +7,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Navbar({ authState, setAuthState }) {
-  console.log(authState);
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
   const xpForNextLevel = (authState.xpLevel + 1) * 1000;
   const xpProgress = (authState.xp / xpForNextLevel) * 100;
 
-  console.log(xpProgress);
-
-  const handleSearch = (query) => {
-    // Handle the search query (e.g., make an API request, filter subjects, etc.)
-    console.log("Search Query:", query);
-  };
+  console.log(authState);
 
   return (
     <nav className="nav">
@@ -26,9 +21,9 @@ function Navbar({ authState, setAuthState }) {
         <Link to="/" className="title">
           Gib<span>John</span>Tutoring
         </Link>
-        <div>
-          <SearchBar onSearch={handleSearch} />
-        </div>
+
+        <SearchBar />
+
         <div
           className="menu"
           onClick={() => {

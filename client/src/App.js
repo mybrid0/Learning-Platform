@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 
 import axios from "axios";
 import "./App.css";
+import XPUpdater from "./XPUpdater";
 import { AuthContext } from "./helpers/AuthContext";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -12,6 +13,7 @@ import Profile from "./pages/Profile";
 import Quiz from "./pages/Quiz";
 import Quizzes from "./pages/Quizzes";
 import Register from "./pages/Register";
+import SubjectPage from "./pages/SubjectPage/SubjectPage";
 import Subjects from "./pages/Subjects/Subjects";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
       ...prevAuthState,
       xp: newXP,
     }));
+    localStorage.setItem("xp", newXP);
   };
 
   //When page Loads...
@@ -57,6 +60,51 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/users/userData", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        setAuthState((prevAuthState) => ({
+          ...prevAuthState,
+          xp: response.data.xp,
+          xpLevel: response.data.xpLevel,
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/users/userData",
+          {
+            headers: {
+              accessToken: localStorage.getItem("accessToken"),
+            },
+          }
+        );
+
+        setAuthState((prevAuthState) => ({
+          ...prevAuthState,
+          xp: response.data.xp,
+          xpLevel: response.data.xpLevel,
+        }));
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [setAuthState]);
+
+  console.log({ authstate: authState });
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState, updateXP }}>
@@ -72,7 +120,9 @@ function App() {
             <Route path="/quizzes/:quizTitle" element={<Quiz />} />
             <Route path="/quizzes/" element={<Quizzes />} />
             <Route path="/subjects/" element={<Subjects />} />
+            <Route path="subjects/:subjectId" element={<SubjectPage />} />
           </Routes>
+          <XPUpdater authState={authState} setAuthState={setAuthState} />
         </BrowserRouter>
       </AuthContext.Provider>
     </div>

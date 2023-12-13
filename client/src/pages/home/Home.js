@@ -6,6 +6,7 @@ import { AuthContext } from "../../helpers/AuthContext";
 import QuizCard from "../home/QuizCard";
 import "./Home.css";
 import HomeSubjectCard from "./HomeSubjectCard";
+import Leaderboards from "./Leaderboards";
 
 function Home() {
   let navigate = useNavigate();
@@ -36,8 +37,6 @@ function Home() {
     fetchFavouritedSubjects();
   }, []);
 
-  console.log(favouritedSubjects);
-
   return (
     <div className="home">
       <div className="wrapper">
@@ -57,7 +56,7 @@ function Home() {
         </div>
         <div className="fav-subject-container">
           <h1>
-            <a href="/subjects">Favourite Subjects</a>
+            <a href="/subjects?query=">Favourite Subjects</a>
           </h1>
           <div className="subject-cards-home">
             {favouritedSubjects.map((subject) => (
@@ -69,8 +68,9 @@ function Home() {
             ))}
           </div>
         </div>
-        <div className="profile-container">
-          <h1> Profile</h1>
+        <div className="leaderboard-container ">
+          <h1> Leaderboards</h1>
+          <Leaderboards />
         </div>
       </div>
     </div>

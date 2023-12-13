@@ -37,7 +37,6 @@ router.post("/like", validateToken, async (req, res) => {
 
 router.get("/", validateToken, async (req, res) => {
   const userId = req.user.id;
-  console.log(userId);
   try {
     const foundFavourites = await Favourite.findAll({
       where: {
@@ -50,8 +49,6 @@ router.get("/", validateToken, async (req, res) => {
         },
       ],
     });
-
-    console.log(foundFavourites);
 
     res.status(200).json({ foundFavourites });
   } catch (error) {

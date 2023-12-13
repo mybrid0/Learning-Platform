@@ -106,16 +106,19 @@ router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
 });
 
-router.get("/:userId", async (req, res) => {
+router.get("/userData", validateToken, async (req, res) => {
+  const userId = req.user.id;
+  console.log(userId);
   try {
-    const userId = req.params.userId;
     const user = await Users.findByPk(userId);
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "user not found" });
     }
 
-    res.json({
+    res.status(200).json({
+      id: user.id,
+      username: user.username,
       xp: user.xp,
       xpLevel: user.xpLevel,
     });
@@ -125,4 +128,19 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
+router.get("/leaderboards", async (req, res) => {
+  try {
+    // Fetch the top 10 users based on XP
+    const leaderboards = await Users.findAll({
+      attributes: ["id", "username", "xp"],
+      order: [["xp", "DESC"]],
+      limit: 10,
+    });
+
+    res.status(200).json(leaderboards);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 module.exports = router;

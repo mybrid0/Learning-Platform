@@ -1,0 +1,30 @@
+input {
+  width: 100%;
+  font-size: 1.5rem;
+  border: 2px solid rgb(42, 66, 143);
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+.search-bar-container {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+input:focus {
+  border: 2px solid lightblue;
+  outline: none;
+}
+
+* {
+  font-family: inherit;
+}
+
+@media (max-width: 1100px) {
+  input {
+    font-size: 1rem;
+  }
+}

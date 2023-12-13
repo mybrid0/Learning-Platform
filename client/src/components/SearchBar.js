@@ -1,6 +1,7 @@
 // SearchBar.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./searchbar.css";
 
 const SearchBar = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className="search-bar-container">
       <input
         type="text"
         placeholder="Search for subjects"

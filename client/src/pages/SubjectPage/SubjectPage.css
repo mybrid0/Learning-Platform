@@ -1,0 +1,85 @@
+/* SubjectSidebar.css (create a new CSS file) */
+
+.subject-sidebar {
+  background-color: #c1e1e6;
+  padding: 10px;
+  width: 200px;
+  height: 83vh;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.subject-sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.subject-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subject-sidebar li {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.subject-sidebar li:hover {
+  background-color: #ddd;
+}
+
+.subject-sidebar a {
+  width: 100%;
+}
+/* SubjectDetails.css */
+
+.subject-details {
+  margin-left: 220px; /* Adjust this value based on your sidebar width */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.subject-details h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.subject-details p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.subject-details .main-content {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Add media query to adjust layout for smaller screens */
+@media screen and (max-width: 600px) {
+  .subject-details {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+.subject-details .bottom-section {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.subject-details button {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  margin-right: 100px;
+  background-color: rgb(70, 172, 185);
+}
