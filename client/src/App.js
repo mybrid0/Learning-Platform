@@ -42,7 +42,6 @@ function App() {
       })
       //after completing request receives response
       .then((response) => {
-        console.log(response);
         if (response.data.error)
           // If there is an error, isLogged in will still be false.
           setAuthState({ ...authState, isLoggedIn: false });
@@ -103,7 +102,6 @@ function App() {
     fetchUserData();
   }, [setAuthState]);
 
-  console.log({ authstate: authState });
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState, updateXP }}>

@@ -4,9 +4,9 @@ import "./SubjectPage.css";
 
 const SubjectSidebar = ({ subjects, onSubjectClick }) => {
   const navigate = useNavigate();
-  const handleSubjectClick = (subject) => {
-    navigate(`/subjects/${subject.name.toLowerCase()}`);
-  };
+
+  //Subject Sidebar that has all the subjects on it
+
   return (
     <div className="subject-sidebar">
       <h2>Subjects</h2>

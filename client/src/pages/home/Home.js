@@ -9,9 +9,11 @@ import Leaderboards from "./Leaderboards";
 
 function Home() {
   let navigate = useNavigate();
+  // Setting states for the quizzes and the favourited Subjects as an array
   const [quizzes, setQuizzes] = useState([]);
   const [favouritedSubjects, setFavouritedSubjects] = useState([]);
 
+  //Upon page render, if user is not logged in, then they will be redirected to the login paeg
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
       navigate("/login");
@@ -19,15 +21,17 @@ function Home() {
     setQuizzes(quizData);
   }, [navigate]);
 
+  //Upon page render, fetch favourite subjects from express API
   useEffect(() => {
     const fetchFavouritedSubjects = async () => {
       try {
         const response = await axios.get("http://localhost:3001/favourites", {
+          // Using accessToken as a header to only retrieve favourites that much the current logged in user
           headers: {
             accessToken: localStorage.getItem("accessToken"),
           },
         });
-
+        //Setting favourite Subjects to data from response
         setFavouritedSubjects(response.data.foundFavourites);
       } catch (error) {
         console.error(error);
@@ -44,6 +48,8 @@ function Home() {
             <a href="/quizzes">Quizzes</a>
           </h1>
           <div className="quiz-cards">
+            {/* Mapping over quizzes 
+          and rendering quizcard */}
             {quizzes.map((quiz, index) => (
               <QuizCard
                 key={index}
@@ -69,6 +75,7 @@ function Home() {
         </div>
         <div className="leaderboard-container ">
           <h1> Leaderboards</h1>
+          {/* Render leaderboard component */}
           <Leaderboards />
         </div>
       </div>

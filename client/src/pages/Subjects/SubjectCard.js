@@ -5,9 +5,11 @@ import "./Subjects.css";
 import axios from "axios";
 import { FaHeart } from "react-icons/fa";
 
+//Subejct card which displays on "/subjects"
 const SubjectCard = ({ subject, Icon }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  //Handles response when clicking favourite
   const handleFavoriteClick = async () => {
     try {
       const response = await axios.post(

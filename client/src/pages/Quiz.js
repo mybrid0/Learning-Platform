@@ -81,13 +81,13 @@ const Quiz = () => {
       });
       // Update the user's XP and XP level
       await axios.put(
-        `http://localhost:3001/users/update-xp/${authState.id}`,
+        `http://localhost:3001/users/update-xp/`,
         {
           score: score,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            accessToken: localStorage.getItem("accessToken"),
           },
         }
       );

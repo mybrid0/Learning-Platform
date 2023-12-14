@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { QuizCompletion } = require("../models");
 
+//Posts a field once a quiz has been completed
 router.post("/quiz-completion", async (req, res) => {
   try {
     const { userId, score, subject } = req.body;
@@ -20,6 +21,7 @@ router.post("/quiz-completion", async (req, res) => {
   }
 });
 
+//Gets the high scores based of the user ID
 router.get("/user/high-score/:userId", async (req, res) => {
   try {
     const { userId } = req.params;

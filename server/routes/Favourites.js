@@ -3,10 +3,11 @@ const router = express.Router();
 const { validateToken } = require("../middleware/AuthMiddleware");
 const { Favourite, Subject } = require("../models");
 
+//Route to like a subject
 router.post("/like", validateToken, async (req, res) => {
   const { subjectId } = req.body;
   const userId = req.user.id;
-
+  //Finds Favourite
   try {
     const found = await Favourite.findOne({
       where: {
@@ -14,12 +15,16 @@ router.post("/like", validateToken, async (req, res) => {
         UserId: userId,
       },
     });
+
+    //if the favourite is not there, then it creates a field.
     if (!found) {
       await Favourite.create({
         SubjectId: subjectId,
         UserId: userId,
       });
       res.status(200).json({ favourited: true });
+
+      //If there is already a field, then the field is removed.
     } else {
       await Favourite.destroy({
         where: {
@@ -35,8 +40,10 @@ router.post("/like", validateToken, async (req, res) => {
   }
 });
 
+//Getting all favourites
 router.get("/", validateToken, async (req, res) => {
   const userId = req.user.id;
+  //Find all Favourites for the user that is logged in
   try {
     const foundFavourites = await Favourite.findAll({
       where: {

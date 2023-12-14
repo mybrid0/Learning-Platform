@@ -1,15 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+//Component that loads youtube video
+
 const SubjectVideo = ({ subjectName }) => {
   const [videoId, setVideoId] = useState("");
+
+  //Get APIKEY from environment variables
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  //When page loads, get video, based of the subject name
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        // Replace 'YOUR_API_KEY' with your actual API key
-        console.log(apiKey);
         const response = await axios.get(
           `https://www.googleapis.com/youtube/v3/search?q=${subjectName}-Overview&part=snippet&type=video&key=${apiKey}`
         );

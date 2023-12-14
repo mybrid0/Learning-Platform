@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Home.css";
 
+//Component to display profile page for each user
 const Profile = () => {
+  //Retrieve the userID from the link ie. "/profile/2"
   const { userId } = useParams();
   const [userProfile, setUserProfile] = useState(null);
 
+  //Fetch profile based on parameters for backend
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -15,7 +18,6 @@ const Profile = () => {
           `http://localhost:3001/users/getUser/${userId}`
         );
         setUserProfile(response.data);
-        console.log(userProfile);
       } catch (error) {
         console.error("Error fetching user profile:", error);
       }

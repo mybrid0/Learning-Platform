@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubjectVideo from "./SubjectVideo";
 
+//Component to display details about each subject +
+
 const SubjectDetails = ({ id }) => {
   const [subjectDetails, setSubjectDetails] = useState(null);
   let navigate = useNavigate();
 
+  //Fetch subejct based off subject ID
   useEffect(() => {
     const fetchSubjectDetails = async () => {
       try {
@@ -15,7 +18,6 @@ const SubjectDetails = ({ id }) => {
           `http://localhost:3001/subjects/${id}`
         );
         setSubjectDetails(response.data.subject);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching subject details:", error);
       }
@@ -23,8 +25,8 @@ const SubjectDetails = ({ id }) => {
 
     fetchSubjectDetails();
   }, [id]);
-  console.log(subjectDetails);
 
+  //Button that redirects you to the quiz page once finished,
   const handleButton = () => {
     try {
       navigate(
@@ -42,6 +44,7 @@ const SubjectDetails = ({ id }) => {
           <h2>{subjectDetails.name}</h2>
           <p>{subjectDetails.description}</p>
 
+          {/* Sample text */}
           <p className="main-content">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique,
             recusandae. Voluptatibus asperiores aspernatur aut et autem,

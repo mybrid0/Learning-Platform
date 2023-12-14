@@ -62,9 +62,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.put("/update-xp/:userId", async (req, res) => {
+router.put("/update-xp/", validateToken, async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user.id;
     const { score } = req.body;
 
     const user = await Users.findByPk(userId);

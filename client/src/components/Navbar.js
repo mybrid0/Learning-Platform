@@ -6,18 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Navbar({ authState, setAuthState }) {
+  //Initiate states for accessible menu
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
+  //Calulate XP and XP for ne
   const xpForNextLevel = (authState.xpLevel + 1) * 1000;
   const xpProgress = (authState.xp / xpForNextLevel) * 100;
-
-  console.log(authState);
 
   return (
     <nav className="nav">
       <div className="main-nav">
         <div className="start">
+          {/* Home */}
           <Link to="/" className="title">
             Gib<span>John</span>Tutoring
           </Link>
@@ -51,7 +51,7 @@ function Navbar({ authState, setAuthState }) {
               </div>
               <li className="drop-link">
                 <a
-                  href="#action"
+                  href="#"
                   className="dropdown-click"
                   onClick={() => setOpen(!open)}
                 >
@@ -85,7 +85,7 @@ function Navbar({ authState, setAuthState }) {
     </nav>
   );
 }
-
+//Drop down functions
 function DropdownMenu({ setAuthState, authState }) {
   const logout = () => {
     localStorage.removeItem("accessToken");

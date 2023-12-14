@@ -1,7 +1,6 @@
 // SubjectPage.jsx
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import SubjectDetails from "./SubjectDetails";
 import SubjectSidebar from "./SubjectSidebar";
 const SubjectPage = () => {
@@ -9,6 +8,8 @@ const SubjectPage = () => {
 
   const [subjects, setSubjects] = useState([]);
   const [selectedSubjectId, setSelectedSubjectId] = useState(null);
+
+  //Fetch list of subjects.
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -22,7 +23,7 @@ const SubjectPage = () => {
     fetchSubjects();
   }, []);
 
-  console.log(subjects);
+  //When clicking on subject, get the subject ID
 
   const handleSubjectClick = (subjectId) => {
     setSelectedSubjectId(subjectId);

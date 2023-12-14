@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 
+//Component to display quizzes on the home page
+
 const QuizCard = ({ title, numQuestions }) => {
   return (
     <Link

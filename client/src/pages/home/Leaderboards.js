@@ -3,9 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./leaderboards.css";
 
+//Component to display leaderboards on home page
 const Leaderboards = () => {
   const [leaderboards, setLeaderboards] = useState([]);
 
+  //Fetch leaderboards on render
   useEffect(() => {
     // Fetch the leaderboard data from the backend
     const fetchLeaderboards = async () => {
@@ -22,6 +24,7 @@ const Leaderboards = () => {
     fetchLeaderboards();
   }, []);
 
+  //Depending on position of the user, the background will change to gold,silver,bronze
   return (
     <div className="leaderboards">
       <ul>

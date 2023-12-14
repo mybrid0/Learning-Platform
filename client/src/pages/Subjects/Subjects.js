@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GiFrance, GiSpain } from "react-icons/gi";
 import SubjectCard from "./SubjectCard";
 import "./Subjects.css";
-
+//Importing all the Icons used for each subject
 import {
   FaAtom,
   FaBacterium,
@@ -25,6 +25,7 @@ import { useLocation } from "react-router-dom";
 
 const Subjects = () => {
   const [subjects, setSubjects] = useState([]);
+  //Mapping each icon to the subjects.
   const iconsMap = {
     Mathematics: FaCalculator,
     Geography: FaGlobeAmericas,
@@ -44,9 +45,11 @@ const Subjects = () => {
     French: GiFrance,
     Astronomy: FaRocket,
   };
+  //Declare location
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
+  //When page loads, load all subejcts using the search query
   useEffect(() => {
     const fetchSubjects = async () => {
       try {

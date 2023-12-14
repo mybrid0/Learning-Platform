@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import RegNavbar from "../components/RegNavbar";
 import Welcome from "../components/Welcome";
 import { AuthContext } from "../helpers/AuthContext";
+
+//Login Component
 const Login = () => {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -12,6 +14,8 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const { setAuthState } = useContext(AuthContext);
+
+  //Setting state of modal
   const openModal = (errorMessage) => {
     setError(errorMessage);
     setModal(true);
@@ -22,6 +26,7 @@ const Login = () => {
     setModal(false);
   };
 
+  //Call backend to compare username and password
   const login = () => {
     axios
       .post("http://localhost:3001/users/login", {
@@ -31,9 +36,12 @@ const Login = () => {
       .then((response) => {
         if (response.data.error) {
           console.log(response.data.error);
+          //If there is an error, then a modal will pop up and display the message.
           openModal(response.data.error);
         } else {
+          //Give the accessToken a value of the JWT
           localStorage.setItem("accessToken", response.data.token);
+
           setAuthState({
             username: response.data.username,
             id: response.data.id,

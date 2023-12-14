@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./searchbar.css";
 
-const SearchBar = ({ onSearch }) => {
+//SearchBar component
+const SearchBar = () => {
+  //State for the search Term
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
+  //Handling button press for search bar - directs to search
   const handleSearch = () => {
     navigate(`/subjects?query=${searchQuery}`);
   };
