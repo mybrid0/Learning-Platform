@@ -51,8 +51,25 @@ This project aims to create a similar web application to Seneca Learning, or Cod
    ```
 
 3. Start Server:
+
+   ```bash
    cd server
    npm start
-   new terminal,
+   ```
+
+   New Terminal
+
+   ```bash
    cd client
    npm start
+
+   ```
+
+   i have no idea how to set up the database
+
+## Technologies Used
+
+- React
+- Express
+- Node.js
+- MySQL
