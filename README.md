@@ -1,4 +1,4 @@
-# GinJohn Tutoring Learning Platform
+# GibJohn Tutoring Learning Platform
 
 This is a project created for a school project
 
@@ -36,11 +36,19 @@ This project aims to create a similar web application to Seneca Learning, or Cod
    ```
 
 2. Install Dependencies:
+
+   ```bash
    cd server
    npm install
-   cd ..
+   ```
+
+   New Terminal
+
+   ```bash
    cd client
    npm install
+
+   ```
 
 3. Start Server:
    cd server
