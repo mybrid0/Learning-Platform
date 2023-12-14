@@ -3,6 +3,7 @@
 This is a project created for a school project
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
@@ -12,17 +13,38 @@ This is a project created for a school project
 - [License](#license)
 
 ## Overview
+
 This project aims to create a similar web application to Seneca Learning, or Code Academy.
 
 ## Features
-- Feature 1: Description
-- Feature 2: Description
-- ...
+
+- Feature 1: Login
+- Feature 2: Register
+- Feature 3: Quizzes
+- Feature 4: Detailed Subjects
+- Feature 5: Leaderboard System
+- Feature 6: Profiles
 
 ## Installation
-Provide step-by-step instructions on how to set up the project locally. Include any dependencies and configuration steps.
 
 1. Clone the repository:
+
    ```bash
-   git clone https://github.com/your-username/your-project.git
-   cd your-project
+   git clone https://github.com/mybrid0/GitHub-Profiles-App
+   cd Learning Platfrom
+
+   ```
+
+2. Install Dependencies:
+   cd server
+   npm install
+   cd ..
+   cd client
+   npm install
+
+3. Start Server:
+   cd server
+   npm start
+   new terminal,
+   cd client
+   npm start
