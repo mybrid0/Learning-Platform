@@ -1,6 +1,7 @@
 // Leaderboards.jsx
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./leaderboards.css";
 
 const Leaderboards = () => {
   const [leaderboards, setLeaderboards] = useState([]);
@@ -22,16 +23,27 @@ const Leaderboards = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Leaderboards</h2>
-      <ol>
+    <div className="leaderboards">
+      <ul>
         {leaderboards.map((user, index) => (
-          <li key={user.id}>
-            <span>{index + 1}. </span>
-            <strong>{user.username}</strong> - XP: {user.xp}
+          <li
+            key={user.id}
+            className={
+              index === 0
+                ? "gold"
+                : index === 1
+                ? "silver"
+                : index === 2
+                ? "bronze"
+                : "other"
+            }
+          >
+            <span className="position">{index + 1}</span>
+            <span className="username">{user.username}</span>
+            <span className="xp">{user.xp} XP</span>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 };

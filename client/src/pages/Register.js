@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import $ from "jquery";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import RegNavbar from "../components/RegNavbar";

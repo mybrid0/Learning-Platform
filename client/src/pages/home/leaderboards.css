@@ -1,0 +1,45 @@
+.gold {
+  background: linear-gradient(to bottom, #c39738, #deb761, #c39738);
+}
+
+.silver {
+  background: linear-gradient(to bottom, #bcc6cc, #eee, #bcc6cc);
+}
+.bronze {
+  background: linear-gradient(to bottom, #cd7f32, #e4ab72, #cd7f32);
+}
+
+.other {
+  background-color: #107791;
+  box-shadow: 0px 3px rgba(0, 0, 0, 0.123);
+}
+
+.leaderboards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.leaderboards ul {
+  list-style-type: none;
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  margin-left: 0;
+  padding: 0 5px;
+}
+
+.leaderboards li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  padding: 5px;
+  border-radius: 10px;
+  color: rgb(8, 61, 63);
+}

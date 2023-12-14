@@ -143,4 +143,20 @@ router.get("/leaderboards", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+router.get("/getUser/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await Users.findByPk(userId, {
+      attributes: ["id", "username", "xp", "xpLevel"],
+    });
+    if (!user) {
+      res.status(404).json({ error: "User Not Found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 module.exports = router;

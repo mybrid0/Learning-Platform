@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import quizData from "../../QuizData";
-import { AuthContext } from "../../helpers/AuthContext";
 import QuizCard from "../home/QuizCard";
 import "./Home.css";
 import HomeSubjectCard from "./HomeSubjectCard";

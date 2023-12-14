@@ -9,13 +9,12 @@ import XPUpdater from "./XPUpdater";
 import { AuthContext } from "./helpers/AuthContext";
 import About from "./pages/About";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile";
 import Quiz from "./pages/Quiz";
 import Quizzes from "./pages/Quizzes";
 import Register from "./pages/Register";
 import SubjectPage from "./pages/SubjectPage/SubjectPage";
 import Subjects from "./pages/Subjects/Subjects";
-
+import Profile from "./pages/home/Profile";
 function App() {
   const [authState, setAuthState] = useState({
     username: "",
@@ -58,7 +57,7 @@ function App() {
           });
         }
       });
-  }, []);
+  }, [authState]);
 
   useEffect(() => {
     axios
@@ -116,7 +115,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:userId" element={<Profile />} />
             <Route path="/quizzes/:quizTitle" element={<Quiz />} />
             <Route path="/quizzes/" element={<Quizzes />} />
             <Route path="/subjects/" element={<Subjects />} />

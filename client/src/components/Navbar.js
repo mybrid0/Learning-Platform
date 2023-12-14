@@ -1,9 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { FaCaretDown } from "react-icons/fa";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Navbar({ authState, setAuthState }) {
@@ -18,11 +17,13 @@ function Navbar({ authState, setAuthState }) {
   return (
     <nav className="nav">
       <div className="main-nav">
-        <Link to="/" className="title">
-          Gib<span>John</span>Tutoring
-        </Link>
+        <div className="start">
+          <Link to="/" className="title">
+            Gib<span>John</span>Tutoring
+          </Link>
 
-        <SearchBar />
+          <SearchBar />
+        </div>
 
         <div
           className="menu"
@@ -36,7 +37,9 @@ function Navbar({ authState, setAuthState }) {
         </div>
         <ul className={menuOpen ? "open" : ""}>
           <li className="link">
-            <NavLink to="/about">About Us</NavLink>
+            <Link to="/quizzes">Quizzes</Link>
+            <Link to="/subjects?query=">Subjects</Link>
+            <Link to="/about">About Us</Link>
           </li>
           {/* Check if logged in */}
           {!authState.isLoggedIn ? (
@@ -48,14 +51,19 @@ function Navbar({ authState, setAuthState }) {
               </div>
               <li className="drop-link">
                 <a
-                  href="#"
+                  href="#action"
                   className="dropdown-click"
                   onClick={() => setOpen(!open)}
                 >
                   {authState.username}
                   <FaCaretDown />
                 </a>
-                {open && <DropdownMenu setAuthState={setAuthState} />}
+                {open && (
+                  <DropdownMenu
+                    setAuthState={setAuthState}
+                    authState={authState}
+                  />
+                )}
               </li>
             </>
           )}
@@ -78,14 +86,14 @@ function Navbar({ authState, setAuthState }) {
   );
 }
 
-function DropdownMenu({ setAuthState }) {
+function DropdownMenu({ setAuthState, authState }) {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, isLoggedIn: false });
     window.location.replace("/");
   };
 
-  function DropdownItem({ link, onClick, icon, children }) {
+  function DropdownItem({ link, onClick, icon, children, authState }) {
     const handleClick = (e) => {
       e.preventDefault();
       if (onClick) {
@@ -105,7 +113,7 @@ function DropdownMenu({ setAuthState }) {
     <div className="dropdown">
       <DropdownItem
         link="/profile"
-        onClick={() => navigate("/profile")}
+        onClick={() => navigate(`/profile/${authState.id}`)}
         icon={<CgProfile />}
       >
         Profile

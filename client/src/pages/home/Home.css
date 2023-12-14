@@ -200,3 +200,32 @@
 .favorite-button-home.favorited {
   color: pink;
 }
+/* Profile.css */
+
+.profile {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 8%;
+}
+
+.user-details,
+.xp-details,
+.other-stats {
+  margin-bottom: 20px;
+}
+
+.leaderboards h2 {
+  color: #333;
+}
+
+.leaderboards p {
+  color: #666;
+}
