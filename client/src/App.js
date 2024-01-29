@@ -57,7 +57,7 @@ function App() {
         }
       });
   }, [authState]);
-
+   
   useEffect(() => {
     axios
       .get("http://localhost:3001/users/userData", {
@@ -76,31 +76,6 @@ function App() {
         console.error("Error fetching user data:", error);
       });
   }, []);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3001/users/userData",
-          {
-            headers: {
-              accessToken: localStorage.getItem("accessToken"),
-            },
-          }
-        );
-
-        setAuthState((prevAuthState) => ({
-          ...prevAuthState,
-          xp: response.data.xp,
-          xpLevel: response.data.xpLevel,
-        }));
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, [setAuthState]);
 
   return (
     <div className="App">

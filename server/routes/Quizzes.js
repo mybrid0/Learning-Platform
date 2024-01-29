@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { QuizCompletion } = require("../models");
-
+const { validateToken } = require("../middleware/AuthMiddleware");
 //Posts a field once a quiz has been completed
-router.post("/quiz-completion", async (req, res) => {
+router.post("/quiz-completion", validateToken, async (req, res) => {
   try {
-    const { userId, score, subject } = req.body;
+    const userId = req.user.id;
+    const { score, subject } = req.body;
     console.log(userId, score, subject);
 
     const quizCompletion = await QuizCompletion.create({
@@ -22,9 +23,9 @@ router.post("/quiz-completion", async (req, res) => {
 });
 
 //Gets the high scores based of the user ID
-router.get("/user/high-score/:userId", async (req, res) => {
+router.get("/user/high-score", validateToken, async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user.id;
 
     const subjects = await QuizCompletion.findAll({
       attributes: ["subject"],

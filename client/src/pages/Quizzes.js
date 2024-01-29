@@ -37,10 +37,10 @@ const Quizzes = () => {
     const fetchHighestScores = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/quiz/user/high-score/${authState.id}`,
+          `http://localhost:3001/quiz/user/high-score/`,
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              accessToken: localStorage.getItem("accessToken"),
             },
           }
         );
@@ -54,9 +54,7 @@ const Quizzes = () => {
       }
     };
     fetchHighestScores();
-  }, [authState.id]);
-
-  // Example list of items
+  });
 
   return (
     <div className="quiz-wrapper">
