@@ -98,12 +98,12 @@
 
 @media (max-width: 2000px) {
   .wrapper > * {
-    height: 600px;
+    height: 700px;
     margin-top: 10px;
     display: flex;
     justify-content: flex-start;
     color: antiquewhite;
-    width: 570px;
+    width: 550px;
     border-radius: 20px;
     background: linear-gradient(to right, #2193b0, #6dd5ed);
   }
