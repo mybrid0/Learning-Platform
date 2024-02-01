@@ -115,13 +115,13 @@
 
 @media (max-width: 1600px) {
   .wrapper > * {
-    width: 400px;
-    height: 550px;
+    width: 450px;
+    height: 500px;
   }
 }
 @media (max-width: 1260px) {
   .wrapper > * {
-    height: 350px;
+    height: 300px;
     width: 400px;
   }
   .wrapper > * h1 {

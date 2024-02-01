@@ -30,7 +30,7 @@ This project aims to create a similar web application to Seneca Learning, or Cod
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mybrid0/Learning-Platform
+   git clone https://github.com/mybrid0/GitHub-Profiles-App
    cd Learning Platfrom
 
    ```
@@ -64,6 +64,8 @@ This project aims to create a similar web application to Seneca Learning, or Cod
    npm start
 
    ```
+
+   i have no idea how to set up the database
 
 ## Technologies Used
 

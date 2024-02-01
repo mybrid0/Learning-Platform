@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import SubjectDetails from "./SubjectDetails";
 import SubjectSidebar from "./SubjectSidebar";
 const SubjectPage = () => {
+  // Dummy data for demonstration purposes
+
   const [subjects, setSubjects] = useState([]);
   const [selectedSubjectId, setSelectedSubjectId] = useState(null);
 

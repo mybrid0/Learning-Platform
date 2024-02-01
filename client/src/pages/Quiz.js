@@ -54,12 +54,13 @@ const Quiz = () => {
         const quizCompletionResponse = await axios.post(
           "http://localhost:3001/quiz/quiz-completion",
           {
+            userId: authState.id,
             score: score,
             subject: currentQuiz.title,
           },
           {
             headers: {
-              accessToken: localStorage.getItem("accessToken"),
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
           }
         );

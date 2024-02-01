@@ -44,6 +44,7 @@ router.post("/login", async (req, res) => {
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (isPasswordValid) {
+        7;
         // Create Access Token
         const accessToken = sign(
           { username: user.username, id: user.id },
