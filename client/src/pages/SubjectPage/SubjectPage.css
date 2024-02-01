@@ -49,12 +49,14 @@
 .subject-details h2 {
   font-size: 2rem;
   margin-bottom: 10px;
+  color: white;
 }
 
 .subject-details p {
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 20px;
+  color: rgb(255, 230, 230);
 }
 
 .subject-details .main-content {
